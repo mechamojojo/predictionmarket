@@ -1,33 +1,34 @@
 import { cn } from "@/lib/utils";
 
 interface MarketTimeProps {
-    endTime: bigint;
-    className?: string;
+  endTime: bigint;
+  className?: string;
 }
 
 const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 };
 
 export function MarketTime({ endTime, className }: MarketTimeProps) {
-    const isEnded = new Date(Number(endTime) * 1000) < new Date();
-    const formattedDate = formatDate(new Date(Number(endTime) * 1000).toISOString());
+  const isEnded = new Date(Number(endTime) * 1000) < new Date();
+  const formattedDate = formatDate(
+    new Date(Number(endTime) * 1000).toISOString()
+  );
 
-    return (
-        <div
-            className={cn(
-                "mb-2 w-fit px-2 py-1 rounded border text-xs",
-                isEnded 
-                    ? "bg-red-200 border-red-300 text-red-800" 
-                    : "border-gray-300 text-gray-800",
-                className
-            )}
-        >
-            {isEnded ? "Ended: " : "Ends: "}{formattedDate}
-        </div>
-    );
+  return (
+    <span
+      className={cn(
+        "text-sm font-medium transition-colors",
+        isEnded ? "text-destructive" : "text-muted-foreground",
+        className
+      )}
+    >
+      {isEnded ? "Finalizado: " : ""}
+      {formattedDate}
+    </span>
+  );
 }

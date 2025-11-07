@@ -1,5 +1,6 @@
 import { Progress } from "@/components/ui/progress";
 import { toEther } from "thirdweb";
+import { formatCurrencyBRCompact } from "@/lib/utils";
 
 interface MarketProgressProps {
     optionA: string;
@@ -20,26 +21,41 @@ export function MarketProgress({
         : 50;
 
     return (
-        <div className="mb-4">
-            <div className="flex justify-between mb-2">
-                <span>
-                    <span className="font-bold text-sm">
-                        {optionA}: {Math.floor(parseInt(toEther(totalOptionAShares)))}
+        <div className="mb-6 space-y-3">
+            <div className="flex justify-between items-center mb-3">
+                <div className="flex flex-col">
+                    <span className="font-semibold text-sm text-foreground">
+                        {optionA}
                     </span>
-                    {totalShares > 0 && (
-                        <span className="text-xs text-gray-500"> {Math.floor(yesPercentage)}%</span>
-                    )}
-                </span>
-                <span>
-                    <span className="font-bold text-sm">
-                        {optionB}: {Math.floor(parseInt(toEther(totalOptionBShares)))}
+                    <span className="text-xs text-muted-foreground">
+                        {formatCurrencyBRCompact(Number(toEther(totalOptionAShares)))}
+                        {totalShares > 0 && (
+                            <span className="ml-1 font-medium text-chart-1"> {Math.floor(yesPercentage)}%</span>
+                        )}
                     </span>
-                    {totalShares > 0 && (
-                        <span className="text-xs text-gray-500"> {Math.floor(100 - yesPercentage)}%</span>
-                    )}
-                </span>
+                </div>
+                <div className="flex flex-col text-right">
+                    <span className="font-semibold text-sm text-foreground">
+                        {optionB}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                        {formatCurrencyBRCompact(Number(toEther(totalOptionBShares)))}
+                        {totalShares > 0 && (
+                            <span className="ml-1 font-medium text-chart-2"> {Math.floor(100 - yesPercentage)}%</span>
+                        )}
+                    </span>
+                </div>
             </div>
-            <Progress value={yesPercentage} className="h-2" />
+            <div className="relative h-3 rounded-full bg-secondary/50 overflow-hidden">
+              <div 
+                className="absolute left-0 top-0 h-full bg-gradient-to-r from-chart-1 to-chart-1/80 transition-all duration-500 ease-out rounded-l-full"
+                style={{ width: `${yesPercentage}%` }}
+              />
+              <div 
+                className="absolute right-0 top-0 h-full bg-gradient-to-l from-chart-2 to-chart-2/80 transition-all duration-500 ease-out rounded-r-full"
+                style={{ width: `${100 - yesPercentage}%` }}
+              />
+            </div>
         </div>
     );
 }

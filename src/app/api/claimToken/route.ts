@@ -1,86 +1,56 @@
-import { tokenAddress } from "@/constants/contract";
 import { NextResponse } from "next/server";
+import { mintTokensToAddress } from "../utils/token-mint";
 
 const { BACKEND_WALLET_ADDRESS, ENGINE_URL, THIRDWEB_SECRET_KEY } = process.env;
 
-async function checkTransactionStatus(queueId: string): Promise<boolean> {
-  const statusResponse = await fetch(
-    `${ENGINE_URL}/transaction/status/${queueId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${THIRDWEB_SECRET_KEY}`,
-      },
-    }
-  );
-
-  if (statusResponse.ok) {
-    const statusData = await statusResponse.json();
-    return statusData.result.status === "mined";
-  }
-  return false;
-}
-
-async function pollTransactionStatus(
-  queueId: string,
-  maxAttempts = 15,
-  interval = 3000
-): Promise<boolean> {
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const isMined = await checkTransactionStatus(queueId);
-    if (isMined) return true;
-    await new Promise((resolve) => setTimeout(resolve, interval));
-  }
-  return false;
-}
-
+/**
+ * Endpoint para receber tokens manualmente (botão "Receber Tokens")
+ * Mantém a funcionalidade original de dar 100 tokens fixos
+ */
 export async function POST(request: Request) {
   if (!BACKEND_WALLET_ADDRESS || !ENGINE_URL || !THIRDWEB_SECRET_KEY) {
-    throw 'Server misconfigured. Did you forget to add a ".env.local" file?';
+    return NextResponse.json(
+      { error: 'Server misconfigured. Did you forget to add a ".env.local" file?' },
+      { status: 500 }
+    );
   }
 
-  const { address } = await request.json();
+  try {
+    const { address } = await request.json();
 
-  const resp = await fetch(
-    `${ENGINE_URL}/contract/84532/${tokenAddress}/erc20/mint-to`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${THIRDWEB_SECRET_KEY}`,
-        "x-backend-wallet-address": BACKEND_WALLET_ADDRESS,
-      },
-      body: JSON.stringify({
-        toAddress: address as string,
-        amount: "100",
-      }),
+    if (!address) {
+      return NextResponse.json(
+        { error: "Address é obrigatório" },
+        { status: 400 }
+      );
     }
-  );
 
-  if (resp.ok) {
-    const data = await resp.json();
-    const queueId = data.result.queueId;
+    // Gerar 100 tokens (como antes)
+    const result = await mintTokensToAddress(address, "100", true);
 
-    const isMined = await pollTransactionStatus(queueId);
-
-    if (isMined) {
+    if (result.success && result.isMined) {
       return NextResponse.json({
         message: "Transaction mined successfully!",
-        queueId,
+        queueId: result.queueId,
       });
-    } else {
+    } else if (result.success) {
       return NextResponse.json(
         {
           message: "Transaction not mined within the timeout period.",
-          queueId,
+          queueId: result.queueId,
         },
         { status: 408 }
       );
+    } else {
+      return NextResponse.json(
+        { message: "Failed to initiate transaction", error: result.error },
+        { status: 500 }
+      );
     }
-  } else {
-    const errorText = await resp.text();
-    console.error("[DEBUG] not ok", errorText);
+  } catch (error) {
+    console.error("[ERROR] Erro no claimToken:", error);
     return NextResponse.json(
-      { message: "Failed to initiate transaction", error: errorText },
+      { message: "Failed to initiate transaction", error: String(error) },
       { status: 500 }
     );
   }

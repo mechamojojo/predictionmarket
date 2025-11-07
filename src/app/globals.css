@@ -2,63 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    /* Background - Branco puro */
+    --background: 0 0% 100%; /* Branco puro (HSL) */
+    --foreground: 0 0% 31%; /* Cinza escuro puro (HSL: 0% sat = cinza puro) */
+    
+    /* Cards - Branco puro */
+    --card: 0 0% 100%; /* Branco puro (HSL) */
+    --card-foreground: 0 0% 31%; /* Cinza escuro puro */
+    
+    /* Popover */
+    --popover: 0 0% 100%; /* Branco puro (HSL) */
+    --popover-foreground: 0 0% 31%; /* Cinza escuro puro */
+    
+    /* Primary - Verde brasileiro (branding principal) */
+    --primary: 142 75% 42%; /* Verde vibrante mais claro */
+    --primary-foreground: 0 0% 100%; /* Branco puro (HSL) */
+    
+    /* Secondary - Branco puro */
+    --secondary: 0 0% 100%; /* Branco puro (HSL) */
+    --secondary-foreground: 0 0% 40%; /* Cinza neutro médio */
+    
+    /* Muted - Branco puro */
+    --muted: 0 0% 100%; /* Branco puro (HSL) */
+    --muted-foreground: 0 0% 50%; /* Cinza neutro médio-claro */
+    
+    /* Accent - Branco puro */
+    --accent: 0 0% 100%; /* Branco puro (HSL) */
+    --accent-foreground: 0 0% 31%; /* Cinza escuro puro */
+    
+    /* Destructive - Vermelho brasileiro */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%; /* Branco puro (HSL) */
+    
+    /* Borders e inputs - Cinza neutro claro */
+    --border: 0 0% 90%; /* Cinza neutro claro (HSL) */
+    --input: 0 0% 90%; /* Cinza neutro claro (HSL) */
+    --ring: 142 100% 29%;
+    
+    /* Charts - Cores para opções de mercado (tons suaves, inspirado em Kalshi) */
+    --chart-1: 210 50% 75%; /* Azul muito suave - Opção A (Sim) */
+    --chart-2: 350 45% 70%; /* Vinho/bordeaux suave - Opção B (Não) */
+    --chart-1-text: 210 80% 40%; /* Azul escuro/saturado para texto - Opção A */
+    --chart-2-text: 350 70% 45%; /* Vinho/bordeaux escuro/saturado para texto - Opção B */
+    --chart-3: 217 91% 60%; /* Azul */
+    --chart-4: 262 83% 58%; /* Roxo */
+    --chart-5: 262 83% 58%; /* Roxo */
+    
+    --radius: 0.75rem;
   }
+  
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    /* Tema escuro estilo Polymarket */
+    --background: 15 23 42; /* Slate escuro */
+    --foreground: 248 250 252;
+    
+    --card: 30 41 59; /* Slate mais escuro */
+    --card-foreground: 248 250 252;
+    
+    --popover: 30 41 59;
+    --popover-foreground: 248 250 252;
+    
+    --primary: 142 75% 42%;
+    --primary-foreground: 15 23 42;
+    
+    --secondary: 51 65 85;
+    --secondary-foreground: 248 250 252;
+    
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+    
+    --accent: 51 65 85;
+    --accent-foreground: 248 250 252;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 248 250 252;
+    
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 142 75% 42%;
+    
+    --chart-1: 142 75% 42%;
+    --chart-2: 239 68% 68%;
+    --chart-3: 217 91% 60%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 262 83% 58%;
   }
 }
 
@@ -66,7 +95,174 @@ body {
   * {
     @apply border-border;
   }
+  
+  html {
+    background-color: hsl(var(--background));
+    overscroll-behavior-y: contain;
+    /* Manter espaço da barra de rolagem mesmo quando oculta */
+    scrollbar-gutter: stable;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    font-size: 1.0625rem; /* 17px - ligeiramente maior que o padrão 16px */
+    line-height: 1.6;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    /* Manter espaço da barra de rolagem mesmo quando oculta */
+    scrollbar-gutter: stable;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: contain;
+    /* Cor do overscroll para verde */
+    background-color: hsl(var(--background));
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+}
+
+/* Estilos customizados inspirados em Polymarket */
+@layer utilities {
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(142 75% 52%) 100%);
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(142 75% 52%) 100%);
+  }
+}
+
+/* Remover flash amarelo nas tabs e transições */
+@layer components {
+  [data-state="active"] {
+    transition: none !important;
+  }
+  
+  [data-state="active"] * {
+    transition: none !important;
+  }
+  
+  /* Remover cores amarelas de focus states e transições */
+  *:focus,
+  *:focus-visible {
+    outline-color: hsl(var(--primary)) !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Melhorar transições sem cores indesejadas */
+  .transition-all,
+  .transition-colors {
+    transition-property: color, background-color, border-color, opacity, transform, shadow !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* Remover transições de mudança de estado nos cards */
+  [data-state] {
+    transition: none !important;
+  }
+  
+  /* Garantir transições suaves sem flash */
+  .card-hover {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* Ocultar funcionalidades de envio/transferência de tokens no ConnectButton */
+  /* Esconde botões de "Send" e "Transfer" no modal do Thirdweb */
+  button[data-testid*="send"],
+  button[data-testid*="transfer"],
+  button[aria-label*="Send"],
+  button[aria-label*="Transfer"],
+  button[aria-label*="Enviar"],
+  button:has-text("Send"),
+  button:has-text("Transfer"),
+  button:has-text("Enviar"),
+  a[href*="send"],
+  a[href*="transfer"],
+  /* Ocultar seções de envio no modal */
+  div[data-testid*="send"],
+  div[data-testid*="transfer"],
+  /* Ocultar opções de envio no menu dropdown */
+  [data-testid="wallet-details-menu"] button:has-text("Send"),
+  [data-testid="wallet-details-menu"] button:has-text("Transfer"),
+  /* Ocultar tabs de envio se existirem */
+  [role="tab"][aria-label*="Send"],
+  [role="tab"][aria-label*="Transfer"],
+  /* Ocultar seções de token send no modal do Thirdweb */
+  [class*="send-token"],
+  [class*="transfer-token"],
+  /* Ocultar qualquer elemento que contenha "send" ou "transfer" no texto */
+  *:contains("Send Tokens"),
+  *:contains("Transfer Tokens") {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* Estilo customizado para o botão "Entrar" do ConnectButton */
+@layer components {
+  /* Estilizar o botão de conexão do Thirdweb para ser mais atraente */
+  button[data-testid="connect-button"],
+  button[aria-label*="Connect"],
+  button[aria-label*="Conectar"],
+  button:has-text("Entrar"),
+  button:has-text("Connect") {
+    background: linear-gradient(135deg, hsl(142, 75%, 47%) 0%, hsl(142, 75%, 42%) 50%, hsl(142, 75%, 37%) 100%) !important;
+    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35), 0 2px 6px rgba(34, 197, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.2s ease !important;
+    font-weight: 600 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  button[data-testid="connect-button"]:hover,
+  button[aria-label*="Connect"]:hover,
+  button[aria-label*="Conectar"]:hover,
+  button:has-text("Entrar"):hover,
+  button:has-text("Connect"):hover {
+    background: linear-gradient(135deg, hsl(142, 75%, 52%) 0%, hsl(142, 75%, 47%) 50%, hsl(142, 75%, 42%) 100%) !important;
+    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45), 0 4px 10px rgba(34, 197, 94, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+  }
+
+  button[data-testid="connect-button"]:active,
+  button[aria-label*="Connect"]:active,
+  button[aria-label*="Conectar"]:active,
+  button:has-text("Entrar"):active,
+  button:has-text("Connect"):active {
+    transform: translateY(0) scale(1) !important;
+    box-shadow: 0 2px 10px rgba(34, 197, 94, 0.3), 0 1px 4px rgba(34, 197, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Efeito de brilho sutil no botão */
+  button[data-testid="connect-button"]::before,
+  button[aria-label*="Connect"]::before,
+  button[aria-label*="Conectar"]::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: left 0.5s ease !important;
+  }
+
+  button[data-testid="connect-button"]:hover::before,
+  button[aria-label*="Connect"]:hover::before,
+  button[aria-label*="Conectar"]:hover::before {
+    left: 100% !important;
   }
 }

@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Megabolsa - Maior Bolsa de Opiniões do Brasil
 
-## Getting Started
+Plataforma de mercado de previsões (prediction market) para o mercado brasileiro, permitindo que usuários apostem em eventos e ganhem créditos baseados em previsões corretas.
 
-First, run the development server:
+## 🚀 Funcionalidades
 
+- **Mercados de Previsão**: Crie e participe de mercados sobre diversos temas
+- **Depósito via PIX**: Adicione fundos à sua carteira através de PIX
+- **Smart Wallets**: Integração com Thirdweb para carteiras inteligentes
+- **Perfil de Usuário**: Acompanhe suas posições, ganhos e perdas
+- **Gráficos de Probabilidade**: Visualize a evolução das probabilidades ao longo do tempo
+- **Filtros e Busca**: Encontre mercados por categoria, volume ou data
+
+## 🛠️ Tecnologias
+
+- **Next.js 15**: Framework React
+- **Thirdweb**: Integração com blockchain e smart wallets
+- **Tailwind CSS**: Estilização
+- **TypeScript**: Tipagem estática
+- **Mercado Pago**: Processamento de pagamentos PIX
+
+## 📋 Pré-requisitos
+
+- Node.js 18+ 
+- npm ou yarn
+- Conta no Thirdweb
+- Credenciais do Mercado Pago (para PIX)
+
+## 🔧 Instalação
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <seu-repositorio>
+cd megabolsa
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env.local` na raiz do projeto:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Thirdweb
+NEXT_PUBLIC_THIRDWEB_CLIENT_ID=seu_client_id
+BACKEND_WALLET_ADDRESS=seu_backend_wallet
+ENGINE_URL=https://base-sepolia.thirdweb.com
+THIRDWEB_SECRET_KEY=seu_secret_key
 
-## Learn More
+# Mercado Pago
+MERCADOPAGO_ACCESS_TOKEN=seu_access_token
+MERCADOPAGO_PUBLIC_KEY=sua_public_key
 
-To learn more about Next.js, take a look at the following resources:
+# URL do app (para webhooks)
+NEXT_PUBLIC_URL=http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Execute o projeto em desenvolvimento:
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Deploy
 
-## Deploy on Vercel
+### Vercel (Recomendado)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Faça push do código para o GitHub
+2. Acesse [Vercel](https://vercel.com)
+3. Importe seu repositório
+4. Configure as variáveis de ambiente
+5. Deploy automático!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Outras opções
+
+- **Netlify**: Similar ao Vercel
+- **Railway**: Boa opção para apps Next.js
+- **Render**: Alternativa gratuita
+
+## 📝 Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Cria build de produção
+- `npm run start`: Inicia servidor de produção
+- `npm run lint`: Executa o linter
+
+## 🔐 Variáveis de Ambiente
+
+Certifique-se de configurar todas as variáveis necessárias antes de fazer deploy. Veja `ENV_SETUP.md` para mais detalhes.
+
+## 📄 Licença
+
+Este projeto é privado.
+
+## 🤝 Contribuindo
+
+Este é um projeto privado. Para sugestões ou problemas, abra uma issue.
